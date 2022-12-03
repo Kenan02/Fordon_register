@@ -12,7 +12,7 @@ int main()
 {
     
     
-    int val;
+    char val;
     bool end = false;
 
     while (!end)
@@ -20,38 +20,34 @@ int main()
         puts("\n\n------------VALMENY-------------------");
         printf("\n1. Registerar konto\n");
         printf("2. Logga in\n");
-        printf("3. Registerar konto\n");
-        printf("4. avsluta\n");
+        printf("3. avsluta\n");
         puts("\n----------------------------------------");
         printf("\nVälj: ");
 
-        scanf("%d", &val);
+        scanf("%s", &val);
 
         switch(val){
         
-        case 1:
+        case '1':
             createAccount();
             break;
 
-        case 2:
+        case '2':
             login();
             break;
 
-        case 3:
-
-            break;
-
-        case 4:
+        case '3':
             end = true;
             break;
-
 
         default:
             printf("Fel inmatning försök igen!\n");
         
     }
 
-    return 0;
+    
 }
+
+return 0;
 
 }

@@ -91,17 +91,48 @@ void login()
             printf("\nAnge summan du vill ta ut: ");
             scanf("%f", &summa);
             if(summa > usr.balance){
-                printf("\nDu har inte tillräckligt med pengar på kortet\n");
+                printf("\nDu har inte tillräckligt med pengar på kontot\n");
             }else{
             usr.balance -= summa;
 
             fp = fopen(filename, "w");
             fwrite(&usr, sizeof(struct User), 1, fp);
 
-            if(fp != NULL) printf("\nUttag godkänt!");
+            if(fp != NULL) printf("\nUttag godkänt!\n");
 
             fclose(fp);
             }
+            break;
+
+        case 4:
+            printf("\nAnge telefon nummer du vill överföra pengar till: ");
+            scanf("%s", tele);
+            printf("\nAnge summan att överföra: ");
+            scanf("%f", &summa);
+            if(summa > usr.balance) printf("\nDu har inte tillräckligt med pengar på kontot\n");
+
+            else{
+                strcpy(filename, tele);
+                fp = fopen(strcat(filename, ".dat"), "r");
+                fread(&usr1, sizeof(struct User), 1, fp);
+                fclose(fp);
+
+                fp = fopen(filename, "w");
+                usr1.balance += summa;
+                fwrite(&usr1, sizeof(struct User), 1, fp);
+                fclose(fp);
+                if(fwrite != NULL){
+                    printf("\nÖverföringen av %.2f KR till %s är godkänd!\n", summa, tele);
+                    strcpy(filename, usr.phone);
+                    fp = fopen(strcat(filename, ".dat"), "w");
+                    usr.balance -= summa;
+                    fwrite(&usr, sizeof(struct User), 1, fp);
+                    fclose(fp);
+
+                }
+            }
+
+
             break;
         
         default:

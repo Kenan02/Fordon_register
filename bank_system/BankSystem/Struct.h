@@ -9,6 +9,6 @@ struct User
     float balance;
 };
 
-struct User usr;
+struct User usr, usr1;
 
 #endif
